@@ -1,0 +1,24 @@
+h3{
+  font-size: 14px;
+}
+
+.nav-link{
+  border: 1px solid rgb(230, 230, 230);
+  padding-top:5px;
+  padding-bottom:5px;
+  color: black;
+  margin-top:2px;
+  margin-bottom:2px;
+  font-size:13px;
+}
+
+.active{
+  color: black !important;
+  background-color: white !important;
+  font-weight: bold;
+}
+
+.nav-link:hover{
+  color: black !important;
+  background-color: white !important;
+}
