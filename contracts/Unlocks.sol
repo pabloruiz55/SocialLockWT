@@ -7,21 +7,13 @@ import "./ConvertLib.sol";
 // coin/token contracts. If you want to create a standards-compliant
 // token, see: https://github.com/ConsenSys/Tokens. Cheers!
 
-contract MetaCoin {
+contract Unlocks {
 	mapping (address => uint) balances;
-	uint contractBalance;
 
 	event Transfer(address indexed _from, address indexed _to, uint256 _value);
-	event PayContract(address indexed _from, uint256 _value);
 
-
-	function MetaCoin() {
-		balances[tx.origin] = 10000;
-		contractBalance = 100;
-	}
-
-	function getContractBalance() returns(uint){
-		return contractBalance;
+	function Unlocks() {
+		balances[tx.origin] = 1000000;
 	}
 
 	function sendCoin(address receiver, uint amount) returns(bool sufficient) {
@@ -32,17 +24,9 @@ contract MetaCoin {
 		return true;
 	}
 
-	function payCoin(address sender, uint amount) returns(bool sufficient) {
-		if (balances[sender] < amount) return false;
-		balances[sender] -= amount;
-		contractBalance += amount;
-		PayContract(sender, amount);
-		return true;
-	}
-
-	function getBalanceInEth(address addr) returns(uint){
+	/*function getBalanceInEth(address addr) returns(uint){
 		return ConvertLib.convert(getBalance(addr),2);
-	}
+	}*/
 
 	function getBalance(address addr) returns(uint) {
 		return balances[addr];

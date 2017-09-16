@@ -1,7 +1,17 @@
 
   <app-navbar></app-navbar>
-  <div class="container-fluid bg-white" style="height:350px;">
+  <div class="container-fluid bg-white" style="padding-left:50px;padding-top:50px;padding-bottom:50px;border-bottom:1px solid rgb(230, 230, 230);">
+    <div class="row">
+      <div class="col-6">
+        <h1 style="font-size:34px;">Access the best content from the internet</h1>
+        <h4 class="mt-3" style="font-size:24px;font-weight:normal;">Find music, videos, photos, books and unlock them by inviting friends to join.</h4>
+        <button class="btn btn-success mt-3" type="submit">SIGN UP</button>
 
+      </div>
+      <div class="col-6">
+
+      </div>
+    </div>
   </div>
   <div class="container">
     <div class="row">
@@ -16,6 +26,9 @@
       <div class="col-2 p-3" >
             <app-rightbar></app-rightbar>
             {{balance}}
+            <button (click)="payCoin(100)" class="btn btn-primary" type="button" name="button">Pagar 100 Metacoins</button>
+            <button (click)="testBalance()" class="btn btn-success" type="button" name="button">Test balance</button>
+
       </div>
 
     </div>
