@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 //Routing
 import {APP_ROUTING} from './app.routes';
 
+//Services
+import {TruffleEthereumService} from './services/truffle-ethereum.service'
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -24,7 +27,7 @@ import { RightbarComponent } from './components/rightbar/rightbar.component';
     BrowserModule,
     APP_ROUTING
   ],
-  providers: [],
+  providers: [TruffleEthereumService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
