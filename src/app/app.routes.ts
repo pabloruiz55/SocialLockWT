@@ -4,7 +4,8 @@ import {ContentDetailComponent} from './components/content-detail/content-detail
 
 const APP_ROUTES: Routes = [
   { path: '', component: ContentComponent },
-  { path: ':id', component: ContentDetailComponent },
+  { path: 'content/:id', component: ContentDetailComponent },
+  { path: 'categories/:category', component: ContentComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 

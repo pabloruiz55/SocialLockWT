@@ -5,3 +5,8 @@
 .content-container p{
   font-size:14px;
 }
+
+.locksText{
+  font-size: 12px !important;
+  line-height: 14px !important;
+}

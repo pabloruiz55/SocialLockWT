@@ -1,89 +1,9 @@
-<div class="sticky-top p-3">
+<div class="sticky-top pt-3">
   <h3>Categories</h3>
   <ul class="nav nav-pills flex-column">
-    <li class="nav-item">
-      <a class="nav-link active" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Overview</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Reports</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Analytics</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Export</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Reports</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Analytics</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Export</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Reports</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Analytics</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Export</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Reports</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Analytics</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Export</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Reports</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Analytics</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Export</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Reports</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Analytics</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Export</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Reports</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Analytics</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Export</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Reports</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Analytics</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Export</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Reports</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Analytics</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fa fa-camera-retro fw mr-2"></i>Export</a>
+    <li *ngFor="let cat of categories" class="nav-item">
+      <a *ngIf="cat.name=='Home'" [routerLink]="['']" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active"  class="nav-link"><i class="fa {{cat.icon}} fw mr-2"></i>{{cat.name}}</a>
+      <a *ngIf="cat.name!='Home'" [routerLink]="['categories',cat.name]" routerLinkActive="active" class="nav-link"><i class="fa {{cat.icon}} fw mr-2"></i>{{cat.name}}</a>
     </li>
   </ul>
 </div>
