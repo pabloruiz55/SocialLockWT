@@ -33,14 +33,24 @@
     <!-- <form class="form-inline" >
       <input class="form-control form-control-sm" style="width:300px;" type="text" placeholder="Discover the best free content..." aria-label="Search">
     </form> -->
-    <div class="navbar-collapse collapse dual-collapse">
+    <div *ngIf="!_db.user" class="navbar-collapse collapse dual-collapse">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <button class="btn btn-outline-success btn-sm" type="submit">LOG IN</button>
+              <button (click)="openModal()" class="btn btn-outline-success btn-sm" type="submit">LOG IN</button>
             </li>
             <li class="nav-item">
-              <button class="btn btn-success btn-sm ml-1" type="submit">SIGN UP</button>
+              <button (click)="openModal()" class="btn btn-success btn-sm ml-1" type="submit">SIGN UP</button>
             </li>
+        </ul>
+    </div>
+    <div *ngIf="_db.user" class="navbar-collapse collapse dual-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <button (click)="logout()"  class="btn btn-danger btn-sm" type="submit">Logout</button>
+              <button  class="btn btn-sm ml-3" type="submit">{{_db.user.displayName}}</button>
+              <img class="ml-3" [src]="_db.user.photoURL" width="50" alt="">
+            </li>
+
         </ul>
     </div>
   </div>

@@ -8,6 +8,8 @@ import {APP_ROUTING} from './app.routes';
 import {TruffleEthereumService} from './services/truffle-ethereum.service';
 import {FirebaseService} from './services/firebase.service';
 import {CategoriesService} from './services/categories.service';
+import { ModalService } from './components/fslogin-modal/fslogin-modal.component';
+
 
 //Firebase config
 import { AngularFireModule } from 'angularfire2';
@@ -23,6 +25,7 @@ import { ContentDetailComponent } from './components/content-detail/content-deta
 import { RightbarComponent } from './components/rightbar/rightbar.component';
 import { ContentPipe } from './components/content/content.pipe';
 import { MainComponent } from './components/main/main.component';
+import { FSLoginModalComponent } from './components/fslogin-modal/fslogin-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { MainComponent } from './components/main/main.component';
     ContentDetailComponent,
     RightbarComponent,
     ContentPipe,
-    MainComponent
+    MainComponent,
+    FSLoginModalComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,10 @@ import { MainComponent } from './components/main/main.component';
     AngularFireAuthModule,
     APP_ROUTING
   ],
-  providers: [/*TruffleEthereumService,*/FirebaseService, CategoriesService],
+  providers: [/*TruffleEthereumService,*/
+    FirebaseService,
+    CategoriesService,
+    ModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

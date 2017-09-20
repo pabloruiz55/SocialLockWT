@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ModalService,FSLoginModalComponent} from '../fslogin-modal/fslogin-modal.component';
+import {FirebaseService} from '../../services/firebase.service'
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _modal:ModalService,private _db:FirebaseService) { }
 
   ngOnInit() {
+  }
+
+  openModal(){
+    this._modal.open();
+  }
+
+  logout(){
+    this._db.logout();
   }
 
 }

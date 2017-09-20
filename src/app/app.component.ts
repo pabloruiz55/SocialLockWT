@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TruffleEthereumService} from './services/truffle-ethereum.service';
+//import {TruffleEthereumService} from './services/truffle-ethereum.service';
+import {CategoriesService} from './services/categories.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import {TruffleEthereumService} from './services/truffle-ethereum.service';
 export class AppComponent {
 
 
-  constructor(/*private _tes:TruffleEthereumService*/) {
+  constructor(/*private _tes:TruffleEthereumService*/ private _cs:CategoriesService) {
 
   }
 

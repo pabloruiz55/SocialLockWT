@@ -9,10 +9,7 @@ export class ContentPipe implements PipeTransform {
     let count = 0;
     for (let key in unlocks) {
       count++;
-    // Use `key` and `value`
     }
-    console.log(unlocks);
-    console.log(count);
     return unlocksReq - count;
   }
 
