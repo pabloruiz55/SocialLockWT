@@ -1,6 +1,10 @@
+<div *ngIf="catTitle" class="content-container border bg-white rounded p-3 bg-div">
+  <h4>{{catTitle}}</h4>
+  <p>{{catDescription}}</p>
+</div>
 <div class="content-container border bg-white rounded p-3">
   <div class="list-group">
-    <a *ngFor="let c of content" [routerLink]="['content',c.$key]" class="list-group-item list-group-item-action flex-column align-items-start">
+    <a *ngFor="let c of content" [routerLink]="['/content',c.$key]" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="row">
         <div class="col-auto">
           <img class="rounded" height="90" src="../../../assets/content_placeholder.gif" alt="">
@@ -8,7 +12,7 @@
         <div class="col">
           <h5 class="mb-2">{{c.title}}</h5>
           <p class="mb-2">{{c.description}}</p>
-          <span class="badge badge-light">Books</span>
+          <span class="badge badge-light">{{c.category}}</span>
         </div>
         <div class="col-3 align-self-center text-center" style="padding-left:0px;padding-right:0px;">
           <button *ngIf="!c.unlocked" (click)="unlockContent(c,$event)" type="button" name="button" class="btn btn-sm btn-outline-success"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i>

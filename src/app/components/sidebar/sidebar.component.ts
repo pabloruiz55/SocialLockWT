@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FirebaseService} from '../../services/firebase.service'
+import {CategoriesService} from '../../services/categories.service'
 import {RouterLink,Route} from '@angular/router';
 
 @Component({
@@ -11,13 +11,15 @@ export class SidebarComponent implements OnInit {
 
   categories:any[];
 
-  constructor(private _db:FirebaseService) { }
+  constructor(private _cs:CategoriesService) { }
 
   ngOnInit() {
 
-    this._db.loadCategories().subscribe((data)=>{
-      this.categories = data;
-    });
+    this._cs.categoriesX
+   .subscribe((data) => {
+     this.categories = data;
+     console.log("uh lala data",data);
+   })
   }
 
 }

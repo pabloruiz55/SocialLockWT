@@ -1,9 +1,9 @@
-<div class="sticky-top pt-3">
+<div *ngIf="categories" class="sticky-top pt-3">
   <h3>Categories</h3>
   <ul class="nav nav-pills flex-column">
     <li *ngFor="let cat of categories" class="nav-item">
       <a *ngIf="cat.name=='Home'" [routerLink]="['']" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active"  class="nav-link"><i class="fa {{cat.icon}} fw mr-2"></i>{{cat.name}}</a>
-      <a *ngIf="cat.name!='Home'" [routerLink]="['categories',cat.name]" routerLinkActive="active" class="nav-link"><i class="fa {{cat.icon}} fw mr-2"></i>{{cat.name}}</a>
+      <a *ngIf="cat.name!='Home'" [routerLink]="['/categories',cat.name]" routerLinkActive="active" class="nav-link"><i class="fa {{cat.icon}} fw mr-2"></i>{{cat.name}}</a>
     </li>
   </ul>
 </div>

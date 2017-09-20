@@ -12,22 +12,35 @@ export class FirebaseService {
   }
 
   loadCategories(){
-    this.categories = this.db.list('/categories',{
+    let categories = this.db.list('/categories',{
       query:{
         limitToLast:20,
         orderByKey:true
       }
     });
-    return this.categories;
+    return categories;
   }
 
-  loadAllContent(){
-    this.content = this.db.list('/content',{
-      query:{
-        limitToLast:20,
-        orderByKey:true
+  loadAllContent(category?:string){
+    console.log(category);
+    let query:any;
+    if(category){
+      query = {
+        query: {
+          orderByChild:"category",
+          equalTo: category
+        }
       }
-    });
+    }else{
+      query = {
+        query: {
+          limitToLast:20,
+          orderByKey:true
+        }
+      }
+    }
+    console.log(query);
+    this.content = this.db.list('/content',query);
     return this.content;
   }
 
