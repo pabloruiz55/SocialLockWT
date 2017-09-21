@@ -11,7 +11,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ContentComponent implements OnInit {
 
-  content:any[];
   catTitle:string;
   catDescription:string;
 
@@ -23,9 +22,9 @@ export class ContentComponent implements OnInit {
 
     this.route.params.subscribe(params => {
        this.catTitle = params['category'];
+       this.catDescription = null;
        if(this.catTitle){
          this._db.loadAllContent(this.catTitle).subscribe((data)=>{
-           this.content = data;
 
           //Load category data from service
            this._cs.categoriesX.subscribe((catdata:any[]) => {
@@ -34,10 +33,10 @@ export class ContentComponent implements OnInit {
              this.catDescription = dada.find(x => x.name == this.catTitle).description;
           })
 
-         });
+        });
        }else{
          this._db.loadAllContent().subscribe((data)=>{
-           this.content = data;
+           console.log("el flatmap",data);
          });
        }
     });
@@ -46,7 +45,7 @@ export class ContentComponent implements OnInit {
   unlockContent(content:any, event){
     this._db.unlockContent(content)
     .then(data =>{
-      console.log(this.content);
+      //console.log(this.content);
 
     })
     .catch(err => console.log(err, 'You do not have access!'));
@@ -55,6 +54,18 @@ export class ContentComponent implements OnInit {
     return false;
   }
   downloadContent(content:any, event){
+    // this._db.unlockContent(content)
+    // .then(data =>{
+    //   console.log(this.content);
+    //
+    // })
+    // .catch(err => console.log(err, 'You do not have access!'));
+
+    event.stopPropagation();
+    return false;
+  }
+
+  shareContent(content:any, event){
     // this._db.unlockContent(content)
     // .then(data =>{
     //   console.log(this.content);

@@ -4,7 +4,7 @@
 </div>
 <div class="content-container border bg-white rounded p-3">
   <div class="list-group">
-    <a *ngFor="let c of content" [routerLink]="['/content',c.$key]" class="list-group-item list-group-item-action flex-column align-items-start">
+    <a *ngFor="let c of _db.content" [routerLink]="['/content',c.$key]" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="row">
         <div class="col-auto">
           <img class="rounded" height="90" src="../../../assets/content_placeholder.gif" alt="">
@@ -15,7 +15,9 @@
           <span class="badge badge-light">{{c.category}}</span>
         </div>
         <div class="col-3 align-self-center text-center" style="padding-left:0px;padding-right:0px;">
-          <button *ngIf="!c.unlocked" (click)="unlockContent(c,$event)" type="button" name="button" class="btn btn-sm btn-outline-success"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i>
+          <button *ngIf="!c.unlocked && c.userAlreadyUnlocked && _db.user" (click)="shareContent(c,$event)" type="button" name="button" class="btn btn-sm btn-outline-warning"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i>
+Share</button>
+          <button *ngIf="!c.unlocked && (!c.userAlreadyUnlocked || !_db.user)" (click)="unlockContent(c,$event)" type="button" name="button" class="btn btn-sm btn-outline-success"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i>
 Unlock</button>
           <button *ngIf="c.unlocked" (click)="downloadContent(c,$event)" type="button" name="button" class="btn btn-sm btn-info"><i class="fa fa-download mr-1" aria-hidden="true"></i>
           Download</button>

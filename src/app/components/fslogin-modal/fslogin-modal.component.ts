@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer } from '@angular/core';
 import {FirebaseService} from '../../services/firebase.service'
-
+import { Router} from '@angular/router';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -25,16 +25,19 @@ export class ModalService {
 export class FSLoginModalComponent implements OnInit {
 
   shown = false;
-  constructor(private _modalS:ModalService, private _db:FirebaseService) { }
+  constructor(private _modalS:ModalService,
+              private _db:FirebaseService,
+              private renderer:Renderer,
+              private router:Router) { }
 
   ngOnInit() {
     this._modalS.modal = this;
   }
 
   login(){
-      this._db.login().then((shouldClose)=>{
-      console.log("CLOSE?:",shouldClose);
-      if(shouldClose){
+      this._db.login().then((user)=>{
+      console.log("USER?:",user);
+      if(user){
         this.closeModal();
       }
 
@@ -43,9 +46,11 @@ export class FSLoginModalComponent implements OnInit {
 
   closeModal(){
     this.shown=false;
+    this.renderer.setElementClass(document.body, 'modal-open', false);
   }
   openModal(){
     this.shown=true;
+    this.renderer.setElementClass(document.body, 'modal-open', true);
   }
 
 }
