@@ -6,22 +6,29 @@
   <div class="list-group">
     <a *ngFor="let c of _db.content" [routerLink]="['/content',c.$key]" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="row">
-        <div class="col-auto">
-          <img class="rounded" height="90" src="../../../assets/content_placeholder.gif" alt="">
+        <div class="col-3 col-sm-auto">
+          <img class="rounded img-fluid" style="min-width:40px;" width="90" src="../../../assets/content_placeholder.gif" alt="">
         </div>
-        <div class="col">
+        <div class="col-9 col-sm">
           <h5 class="mb-2">{{c.title}}</h5>
           <p class="mb-2">{{c.description}}</p>
           <span class="badge badge-light">{{c.category}}</span>
         </div>
-        <div class="col-3 align-self-center text-center" style="padding-left:0px;padding-right:0px;">
-          <button *ngIf="!c.unlocked && c.userAlreadyUnlocked && _db.user" (click)="shareContent(c,$event)" type="button" name="button" class="btn btn-sm btn-outline-warning"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i>
-Share</button>
-          <button *ngIf="!c.unlocked && (!c.userAlreadyUnlocked || !_db.user)" (click)="unlockContent(c,$event)" type="button" name="button" class="btn btn-sm btn-outline-success"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i>
-Unlock</button>
-          <button *ngIf="c.unlocked" (click)="downloadContent(c,$event)" type="button" name="button" class="btn btn-sm btn-info"><i class="fa fa-download mr-1" aria-hidden="true"></i>
-          Download</button>
-          <p class="locksText mt-2 mb-0"><strong>{{c.unlocksRequired | unlocksRemaining:c.unlocks }} Locks</strong><br/>Remaining</p>
+        <div class="col-12 col-sm-3 align-self-center text-center" style="padding-left:0px;padding-right:0px;">
+          <div class="row mt-3 mt-sm-0">
+            <div class="col-6 col-sm-12">
+              <button *ngIf="!c.unlocked && c.userAlreadyUnlocked && _db.user" (click)="shareContent(c,$event)" type="button" name="button" class="btn btn-sm btn-outline-warning"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i>
+    Share</button>
+              <button *ngIf="!c.unlocked && (!c.userAlreadyUnlocked || !_db.user)" (click)="unlockContent(c,$event)" type="button" name="button" class="btn btn-sm btn-outline-success"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i>
+    Unlock</button>
+              <button *ngIf="c.unlocked" (click)="downloadContent(c,$event)" type="button" name="button" class="btn btn-sm btn-info"><i class="fa fa-download mr-1" aria-hidden="true"></i>
+              Download</button>
+            </div>
+            <div class="col-6 col-sm-12">
+              <p class="locksText mt-sm-2 mb-0"><strong>{{c.unlocksRequired | unlocksRemaining:c.unlocks }} Locks</strong><br/>Remaining</p>
+
+            </div>
+          </div>
         </div>
       </div>
       <!-- <div class="row mt-3">
