@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:xhtml="http://www.w3.org/1999/xhtml"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="421.08386"
+   height="424.85806"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="logo.svg">
+  <metadata
+     id="metadata16">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>my vector image</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="675"
+     inkscape:window-height="480"
+     id="namedview12"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.3989704"
+     inkscape:cx="195.50322"
+     inkscape:cy="209.92258"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <title
+     id="title4">my vector image</title>
+  <!-- Created with Vector Paint - http://www.vectorpaint.yaks.com/ https://chrome.google.com/webstore/detail/hnbpdiengicdefcjecjbnjnoifekhgdo -->
+  <rect
+     id="backgroundrect"
+     width="421.08386"
+     height="424.85806"
+     x="0"
+     y="0"
+     style="fill:#ffffff;stroke:none" />
+  <g
+     class="currentLayer"
+     id="g7"
+     transform="translate(-192.99678,-25.064514)"
+     style="fill:#37c837">
+    <title
+       id="title9">Layer 1</title>
+    <path
+       stroke-dashoffset=""
+       d="m 200.38096,239.6905 c 0,-113.16759 91.66574,-204.833353 204.83334,-204.833353 113.16757,0 204.83335,91.665763 204.83335,204.833353 0,113.1676 -91.66578,204.83334 -204.83335,204.83334 -113.1676,0 -204.83334,-91.66574 -204.83334,-204.83334 z"
+       id="svg_6"
+       class=""
+       inkscape:connector-curvature="0"
+       style="opacity:1;fill:#37c837;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" />
+    <foreignObject
+       fill="#0bd50b"
+       stroke="#ffffff"
+       style="color: rgb(255, 255, 255); text-align: justify;"
+       stroke-width="2"
+       stroke-linejoin="round"
+       stroke-dashoffset=""
+       fill-rule="nonzero"
+       font-size="300"
+       font-family="'Trebuchet MS', Helvetica, sans-serif"
+       letter-spacing="0"
+       word-spacing="0"
+       marker-start=""
+       marker-mid=""
+       marker-end=""
+       id="svg_1"
+       x="256.6666638493538"
+       y="85.71428719758995"
+       width="300"
+       height="300"
+       class="selected">
+      <xhtml:p
+         style="border: medium none; outline: medium none; font-size: inherit; line-height: 1em; padding: 0px; margin: 0px;">
+        <xhtml:p
+           style="border: medium none; outline: medium none; font-size: inherit; line-height: 1em; padding: 0px; margin: 0px;">
+          <xhtml:br
+             style="border: medium none; outline: medium none; font-size: inherit; line-height: 1em; padding: 0px; margin: 0px;" />
+        </xhtml:p>
+      </xhtml:p>
+    </foreignObject>
+  </g>
+</svg>

@@ -1,57 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white ">
-  <div class="container">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse">
+<nav class="navbar navbar-expand-sm navbar-light bg-white ">
+  <div class="container" id="myContainer">
+
+    <!-- //LEFT -->
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse">
         <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse dual-collapse">
-      <a class="navbar-brand" href="#">
-        <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    </button> -->
+    <div class="navbar-collapse collapse">
+      <a class="navbar-brand mr-3" href="#">
+        <img src="../../assets/logo.svg" width="30" class="d-inline-block align-top" alt="">
         Social<strong>Lock</strong>
       </a>
-        <!-- <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="//codeply.com">Codeply</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-        </ul> -->
     </div>
-    <div class="input-group">
+    <form class="form-inline navbar-collapse">
+      <div class="input-group">
+        <span class="input-group-addon bg-white search-input-p" id="basic-addon1"><i class="fa fa-search fw"></i></span>
+        <input type="text" class="form-control form-control-sm border-left-0" placeholder="Discover awesome content...">
+      </div>
+    </form>
+
+    <!-- //CENTER -->
+    <!-- <div class="input-group">
       <span class="input-group-addon bg-white search-input-p" id="basic-addon1"><i class="fa fa-search fw"></i></span>
-      <input type="text" class="form-control form-control-sm border-left-0" style="width:300px;" placeholder="Discover awesome content...">
-    </div>
-    <!-- <form class="form-inline" >
-      <input class="form-control form-control-sm" style="width:300px;" type="text" placeholder="Discover the best free content..." aria-label="Search">
-    </form> -->
-    <div *ngIf="!_db.user" class="navbar-collapse collapse dual-collapse">
+      <input type="text" class="form-control form-control-sm border-left-0" placeholder="Discover awesome content...">
+    </div> -->
+
+    <!-- // RIGHT -->
+    <div *ngIf="!_db.user" class="navbar-collapse text-center mt-2 mt-sm-0">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <button (click)="openModal()" class="btn btn-outline-success btn-sm" type="submit">LOG IN</button>
-            </li>
-            <li class="nav-item">
               <button (click)="openModal()" class="btn btn-success btn-sm ml-1" type="submit">SIGN UP</button>
             </li>
         </ul>
     </div>
-    <div *ngIf="_db.user" class="navbar-collapse collapse dual-collapse">
+    <div *ngIf="_db.user" class="navbar-collapse text-center mt-2 mt-sm-0">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <button (click)="logout()"  class="btn btn-danger btn-sm" type="submit">Logout</button>
-              <button  class="btn btn-sm ml-3" type="submit">{{_db.user?.displayName}} <span class="badge badge-warning text-white ml-1"><i class="fa fa-key mr-1"></i>{{_db.userData?.theKeys}}</span></button>
-              <img class="ml-3" [src]="_db.user.photoURL" width="50" alt="">
+              <button class=" btn btn-sm btn-success" type="button">SUBMIT CONTENT</button>
+              <!-- <button  class="btn btn-sm ml-3" type="submit">{{_db.user?.displayName}} <span class="badge badge-warning text-white ml-1"><i class="fa fa-key mr-1"></i>{{_db.userData?.theKeys}}</span></button> -->
+              <div class="dropdown d-inline">
+                <a data-toggle="dropdown" data-offset=30><img class="ml-3 rounded-circle" [src]="_db.user.photoURL" width="50" alt=""></a>
+                <div class="dropdown-menu" style="top:2.5rem;left:-1.6rem;min-width:8.5rem"  aria-labelledby="dropdownMenu2">
+                  <button class="dropdown-item" type="button">My Profile</button>
+                  <button class="dropdown-item" type="button">My Content</button>
+                  <div class="dropdown-divider"></div>
+                  <button (click)="logout()" class="dropdown-item" type="button">Logout</button>
+                </div>
+              </div>
             </li>
-
         </ul>
     </div>
+
   </div>
 </nav>

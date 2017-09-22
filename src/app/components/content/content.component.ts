@@ -14,7 +14,7 @@ export class ContentComponent implements OnInit {
   catTitle:string;
   catDescription:string;
 
-  constructor(private _db:FirebaseService,
+  constructor(public _db:FirebaseService,
               private route: ActivatedRoute,
               private _cs:CategoriesService) { }
 
@@ -43,16 +43,18 @@ export class ContentComponent implements OnInit {
   }
 
   unlockContent(content:any, event){
-    this._db.unlockContent(content)
-    .then(data =>{
-      //console.log(this.content);
+    if(this._db.user){
+      this._db.unlockContent(content)
+      .then(data =>{
+        //console.log(this.content);
 
-    })
-    .catch(err => console.log(err, 'You do not have access!'));
-    //console.log(event);
+      })
+      .catch(err => console.log(err, 'You do not have access!'));
+    }
     event.stopPropagation();
     return false;
   }
+
   downloadContent(content:any, event){
     // this._db.unlockContent(content)
     // .then(data =>{

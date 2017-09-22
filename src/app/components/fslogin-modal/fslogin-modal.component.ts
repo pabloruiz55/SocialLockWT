@@ -24,9 +24,10 @@ export class ModalService {
 })
 export class FSLoginModalComponent implements OnInit {
 
+  logging = false;
   shown = false;
   constructor(private _modalS:ModalService,
-              private _db:FirebaseService,
+              public _db:FirebaseService,
               private renderer:Renderer,
               private router:Router) { }
 
@@ -35,8 +36,10 @@ export class FSLoginModalComponent implements OnInit {
   }
 
   login(){
+      this.logging = true;
       this._db.login().then((user)=>{
       console.log("USER?:",user);
+      this.logging = false;
       if(user){
         this.closeModal();
       }

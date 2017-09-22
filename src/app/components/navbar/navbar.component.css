@@ -10,3 +10,21 @@ button {
   font-size: 12px;
   font-weight: bold;
 }
+
+.dropdown-item{
+  font-size:11px;
+  text-transform: uppercase;
+  color: rgb(130, 130, 130);
+  font-weight:bold;
+  padding:0.5rem 1rem;
+}
+
+@media (max-width: 1200px) {
+    #myContainer {
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        max-width:1200px !important;
+    }
+}

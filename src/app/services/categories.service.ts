@@ -7,12 +7,12 @@ export class CategoriesService {
 
   public categoriesX = new BehaviorSubject(null);
 
-  constructor(private _db:FirebaseService) {
+  constructor(public _db:FirebaseService) {
 
     this._db.loadCategories().subscribe((data)=>{
       this.categoriesX.next(data);
     });
-    
+
   }
 
 }

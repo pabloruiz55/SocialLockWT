@@ -9,7 +9,7 @@ import {FirebaseService} from '../../services/firebase.service'
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private _modal:ModalService,private _db:FirebaseService) { }
+  constructor(private _modal:ModalService,public _db:FirebaseService) { }
 
   ngOnInit() {
   }
