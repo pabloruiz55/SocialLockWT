@@ -5,6 +5,8 @@ import "rxjs/add/operator/mergeMap";
 import {EmptyObservable} from 'rxjs/observable/EmptyObservable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import 'firebase/storage';
+import {Content} from '../models/content.model'
 
 @Injectable()
 export class FirebaseService {
@@ -163,5 +165,20 @@ export class FirebaseService {
       localStorage.setItem("userData",JSON.stringify(this.userData));
     })
   }
+
+  ///// AD NEW content
+  addNewContent(content:Content){
+    const newContent = this.db.list('/content/');
+    return newContent.push({
+      title:content.title,
+      description:content.description,
+      unlocksRequired: content.unlocksRequired,
+      category: content.category,
+      visibleToAll: content.visibleToAll,
+      fileURL: content.fileURL
+    });
+  }
+
+
 
 }

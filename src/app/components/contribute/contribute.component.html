@@ -1,0 +1,108 @@
+<div class="container" id="myContainer">
+  <div class="row no-gutters">
+    <div class="col-12 pt-3 col-lg-9">
+      <div class="content-container border bg-white rounded p-3">
+        <h1>Submit your Content</h1>
+        <p>Upload your own music, books, videos or images and set how
+           many people have to unlock the content before it can be accessed.
+           Each unlock it gets grants you a key for you to
+           access other people's content!
+        </p>
+        <hr>
+        <div class="container">
+          <form (ngSubmit)="onSubmit(contentForm)" #contentForm="ngForm">
+            <div class="form-group row">
+              <label for="inputTitle" class="col-sm-3 col-form-label">Title</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="newContent.title" name="title" type="text" class="form-control" id="inputTitle" placeholder="Title">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputDescription" class="col-sm-3 col-form-label">Description</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="newContent.description" name="description" type="text" class="form-control" id="inputDescription" placeholder="Description">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputUnlocks" class="col-sm-3 col-form-label">Unlocks Required</label>
+              <div class="col-sm-9">
+                <div class="input-group mb-2 mb-sm-0">
+                  <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                  <input [(ngModel)]="newContent.unlocksRequired" name="unlocksRequired" type="text" class="form-control" id="inputUnlocks" placeholder="Unlocks Required">
+                </div>
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                  Other users will be able to access the content you submit after it's been unlocked by <strong class="text-danger">{{newContent.unlocksRequired}}</strong> people.
+                </small>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputCategory" class="col-sm-3 col-form-label">Category</label>
+              <div class="col-sm-9">
+                <select [(ngModel)]="newContent.category" name="category" class="form-control custom-select">
+                  <option selected value="0">Select a category</option>
+                  <ng-container  *ngFor="let c of categories"><option class="" *ngIf="c.name !='Home'" value="{{c.name}}">{{c.name}}</option></ng-container>
+                </select>
+              </div>
+            </div>
+            <fieldset class="form-group">
+              <div class="row">
+                <legend class="col-form-legend col-sm-3">Show in searched</legend>
+                <div class="col-sm-9">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input (change)="onSelectionChange(true)" [checked]="newContent.visibleToAll" class="form-check-input" type="radio" name="visibleToAll" id="gridRadios1" value="true" checked>
+                      Yes, show in searches.
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input (change)="onSelectionChange(false)" [checked]="!newContent.visibleToAll" class="form-check-input" type="radio" name="visibleToAll" id="gridRadios2" value="false">
+                      No, don't show in searches.
+                    </label>
+                  </div>
+                  <small *ngIf="!newContent.visibleToAll" class="form-text text-muted">This content will <strong>only</strong> be accesible for users who know the URL.</small>
+                  <small *ngIf="newContent.visibleToAll" class="form-text text-muted">This content <strong>will</strong> appear on searches, lists and in the homepage.</small>
+                </div>
+              </div>
+            </fieldset>
+            <div class="form-group row">
+              <label for="inputFile" class="col-sm-3 col-form-label">Content upload</label>
+              <div class="col-sm-9 align-self-center">
+                <!-- <label class="custom-file">
+                  <input (change)="fileChange($event)" type="file" id="inputFile" class="custom-file-input">
+                  <span class="custom-file-control"></span>
+                </label> -->
+
+                <input (change)="fileChange($event)" type="file" class="form-control-file" id="exampleFormControlFile1">
+
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12 mt-3">
+                <button type="submit" class="btn btn-block btn-success">Submit content</button>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                  * By submitting this form you declare you own the rights for the content you are distributing and that it doesn't contain any content that may be offensive to others or against the law.
+                </small>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3 pt-3 d-none d-lg-block col-xl-3" >
+      <div class="sidebar content-container border bg-white rounded p-3">
+        <h6>Share your own content</h6>
+        <hr>
+        <p>Tips for submitting great content</p>
+        <button class="btn btn-block btn-success" type="button" name="button">LEARN MORE</button>
+      </div>
+    </div>
+
+  </div>
+</div>

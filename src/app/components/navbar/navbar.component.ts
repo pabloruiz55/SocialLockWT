@@ -22,4 +22,8 @@ export class NavbarComponent implements OnInit {
     this._db.logout();
   }
 
+  addContent(){
+    
+  }
+
 }

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 
 //Routing
 import {APP_ROUTING} from './app.routes';
@@ -26,6 +27,7 @@ import { RightbarComponent } from './components/rightbar/rightbar.component';
 import { ContentPipe } from './components/content/content.pipe';
 import { MainComponent } from './components/main/main.component';
 import { FSLoginModalComponent } from './components/fslogin-modal/fslogin-modal.component';
+import { ContributeComponent } from './components/contribute/contribute.component';
 
 @NgModule({
   declarations: [
@@ -37,10 +39,12 @@ import { FSLoginModalComponent } from './components/fslogin-modal/fslogin-modal.
     RightbarComponent,
     ContentPipe,
     MainComponent,
-    FSLoginModalComponent
+    FSLoginModalComponent,
+    ContributeComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule,
