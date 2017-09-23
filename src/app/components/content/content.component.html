@@ -6,39 +6,37 @@
   <div class="list-group">
     <a *ngFor="let c of _db.content" [routerLink]="['/content',c.$key]" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="row">
-        <div class="col-3 col-sm-auto">
+        <!-- <div class="col-3 col-sm-auto">
           <img class="rounded img-fluid" style="min-width:40px;" width="90" src="../../../assets/content_placeholder.gif" alt="">
-        </div>
-        <div class="col-9 col-sm">
+        </div> -->
+        <div class="col-8 col-sm-9">
           <h5 class="mb-2">{{c.title}}</h5>
           <p class="mb-2">{{c.description}}</p>
           <span class="badge badge-light">{{c.category}}</span>
         </div>
-        <div class="col-12 col-sm-3 align-self-center text-center" style="padding-left:0px;padding-right:0px;">
-          <div class="row mt-3 mt-sm-0">
-            <div class="col-6 col-sm-12">
+        <div class="col-4 col-sm-3 align-self-center text-center" style="padding-left:0px;padding-right:0px;">
+          <div class="row">
+            <div class="col-12 mb-1">
               <button *ngIf="!c.unlocked && c.userAlreadyUnlocked && _db.user" (click)="shareContent(c,$event)" type="button" name="button" class="btn btn-sm btn-outline-warning"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i>
     Share</button>
               <button *ngIf="!c.unlocked && (!c.userAlreadyUnlocked || !_db.user)" (click)="unlockContent(c,$event)" type="button" name="button" class="btn btn-sm btn-outline-success"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i>
     Unlock</button>
-              <button *ngIf="c.unlocked" (click)="downloadContent(c,$event)" type="button" name="button" class="btn btn-sm btn-info"><i class="fa fa-download mr-1" aria-hidden="true"></i>
-              Download</button>
+              <a href="{{c.fileURL}}" download target="_blank" *ngIf="c.unlocked" (click)="downloadContent(c,$event)" class="btn btn-sm btn-info text-white"><i class="fa fa-download mr-1" aria-hidden="true"></i>
+              Download</a>
             </div>
-            <div class="col-6 col-sm-12">
-              <p class="locksText mt-sm-2 mb-0"><strong>{{c.unlocksRequired | unlocksRemaining:c.unlocks }} Locks</strong><br/>Remaining</p>
+            <div class="col-12 mt-1">
+              <p class="locksText"><strong>{{c.unlocksRequired | unlocksRemaining:c.unlocks }} Locks</strong><br/>Remaining</p>
 
             </div>
           </div>
         </div>
       </div>
-      <!-- <div class="row mt-3">
-        <div class="col text-center">
-          <p><strong>7 more people</strong> are required to unlock this content</p>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-      </div> -->
     </a>
+    <div *ngIf="loadingContent" class="list-group-item list-group-item-action flex-column align-items-start text-center">
+      <i class="fa fa-refresh fa-spin fa-fw mr-2"></i>Loading content...
+    </div>
+    <div *ngIf="!moreContentToLoad" class="list-group-item list-group-item-action flex-column align-items-start text-center">
+      No more content to load.
+    </div>
   </div>
 </div>

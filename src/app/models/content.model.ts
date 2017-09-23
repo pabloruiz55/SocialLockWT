@@ -8,7 +8,8 @@ export class Content {
     public category?: string,
     public visibleToAll?: boolean,
     public fileURL?: string,
-    public unlocks?: string[]
+    public unlocks?: string[],
+    public unFile?:string
   ) {  }
 
 }

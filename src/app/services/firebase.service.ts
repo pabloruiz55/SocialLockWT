@@ -16,6 +16,8 @@ export class FirebaseService {
 
   user: any;
   userData:any;
+  lastKey: string;
+  moreContentToLoad:boolean;
 
   constructor(private db: AngularFireDatabase,
               public afAuth: AngularFireAuth) {
@@ -35,33 +37,83 @@ export class FirebaseService {
     return categories;
   }
 
-  loadAllContent(category?:string):Observable<any>{
-    console.log(category);
-    let query:any;
+  loadAllContent(category?:string, currentPage?:number):Observable<any>{
+    if(currentPage<=0) currentPage = 1000;
+    let queryDBLength:any;
     if(category){
-      query = {
+      queryDBLength = {
         query: {
+          limitToLast:1,
           orderByChild:"category",
           equalTo: category
         }
       }
     }else{
-      query = {
+      queryDBLength = {
         query: {
-          limitToLast:20,
+          limitToLast:1,
           orderByKey:true
         }
       }
     }
+    return this.db.list('/content/',queryDBLength)
+    .flatMap((data) => {
+      // Found the last key
+      if (data.length > 0) {
+          this.lastKey = data[0].$key;
+      } else {
+          this.lastKey = '';
+      }
+      let query:any;
+      if(category){
+        query = {
+          query: {
+            limitToFirst:(5 * currentPage),
+            orderByChild:"category",
+            equalTo: category
+          }
+        }
+      }else{
+        query = {
+          query: {
+            limitToFirst:(5 * currentPage),
+            orderByKey:true
+          }
+        }
+      }
+      return this.db.list('/content/',query)
+      .flatMap((data)=>{
+        console.log("last key",this.lastKey);
+        if (data.length > 0) {
+            // If the last key in the list equals the last key in the database
+            if (data[data.length - 1].$key === this.lastKey) {
+                this.moreContentToLoad = false;
+            } else {
+                this.moreContentToLoad = true;
+            }
+            console.log("More content to load?",this.moreContentToLoad)
+        }
 
-    return this.db.list('/content/',query)
+
+        this.content=data;
+        //console.log("conte conte",this.content);
+        this.lockContentForUser();
+        return this.content;
+
+      });
+    });
+
+
+
+
+    /*return this.db.list('/content/',query)
     .flatMap((data)=>{
       this.content=data;
-      console.log("conte conte",this.content);
+      //console.log("conte conte",this.content);
       this.lockContentForUser();
       return this.content;
 
-    });
+    });*/
 
 
     //this.content = this.db.list('/content',query);
@@ -76,12 +128,12 @@ export class FirebaseService {
   lockContentForUser(){
     //Check and flag already unlocked content by user
     if(this.user){
-      console.log(this.content);
+      //console.log(this.content);
       for (let i=0;i<this.content.length;i++){
-        console.log(this.content[i]);
+        //console.log(this.content[i]);
         //console.log(this.content[i].unlocks.find(x => x.uid == this._db.user.uid));
         if(this.content[i].unlocks && this.content[i].unlocks.find(x => x.uid == this.user.uid)){
-          console.log("Content already unlocked:",this.content[i]);
+          //console.log("Content already unlocked:",this.content[i]);
           this.content[i].userAlreadyUnlocked = true;
         }
       }
@@ -161,7 +213,7 @@ export class FirebaseService {
           console.log("NEW USER DATA");
         });
       }
-      console.log("y la data?",this.userData);
+      //console.log("y la data?",this.userData);
       localStorage.setItem("userData",JSON.stringify(this.userData));
     })
   }

@@ -1,0 +1,40 @@
+.no-gutters {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.col,[class*="col-"] {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+@media (max-width: 1200px) {
+    #myContainer {
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        max-width:1200px !important;
+    }
+}
+
+.sidebar p{
+  font-size:14px;
+  color:rgb(130, 130, 130);
+}
+
+.sidebar h6{
+  color:rgb(130, 130, 130);
+}
+
+.sidebar button{
+  font-size: 14px;
+}
+
+h1{
+  font-size: 18px;
+}
+
+p {
+  font-size: 13px;
+}

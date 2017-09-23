@@ -10,17 +10,24 @@
         </p>
         <hr>
         <div class="container">
-          <form (ngSubmit)="onSubmit(contentForm)" #contentForm="ngForm">
+          <form (ngSubmit)="contentForm.valid && file && onSubmit(contentForm)" #contentForm="ngForm">
             <div class="form-group row">
               <label for="inputTitle" class="col-sm-3 col-form-label">Title</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="newContent.title" name="title" type="text" class="form-control" id="inputTitle" placeholder="Title">
+                <input required [(ngModel)]="newContent.title" name="title" #title="ngModel" type="text" class="form-control" id="inputTitle" placeholder="Title">
+                <small *ngIf="title.invalid && (title.dirty || title.touched)" class="form-text text-danger">
+                  The content title is required.
+                </small>
               </div>
+
             </div>
             <div class="form-group row">
               <label for="inputDescription" class="col-sm-3 col-form-label">Description</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="newContent.description" name="description" type="text" class="form-control" id="inputDescription" placeholder="Description">
+                <input required [(ngModel)]="newContent.description" name="description" #description="ngModel" type="text" class="form-control" id="inputDescription" placeholder="Description">
+                <small *ngIf="description.invalid && (description.dirty || description.touched)" class="form-text text-danger">
+                  The content description is required.
+                </small>
               </div>
             </div>
             <div class="form-group row">
@@ -28,8 +35,11 @@
               <div class="col-sm-9">
                 <div class="input-group mb-2 mb-sm-0">
                   <div class="input-group-addon"><i class="fa fa-key"></i></div>
-                  <input [(ngModel)]="newContent.unlocksRequired" name="unlocksRequired" type="text" class="form-control" id="inputUnlocks" placeholder="Unlocks Required">
+                  <input required pattern="[0-9]{1,2}" [(ngModel)]="newContent.unlocksRequired" name="unlocksRequired" #unlocksRequired="ngModel" type="text" class="form-control" id="inputUnlocks" placeholder="Unlocks Required">
                 </div>
+                <small *ngIf="unlocksRequired.invalid && (unlocksRequired.dirty || unlocksRequired.touched)" class="form-text text-danger">
+                  Please add at least 1 lock to this content.
+                </small>
                 <small id="passwordHelpBlock" class="form-text text-muted">
                   Other users will be able to access the content you submit after it's been unlocked by <strong class="text-danger">{{newContent.unlocksRequired}}</strong> people.
                 </small>
@@ -38,15 +48,18 @@
             <div class="form-group row">
               <label for="inputCategory" class="col-sm-3 col-form-label">Category</label>
               <div class="col-sm-9">
-                <select [(ngModel)]="newContent.category" name="category" class="form-control custom-select">
+                <select required minlength="2" [(ngModel)]="newContent.category" name="category" #category="ngModel" class="form-control custom-select">
                   <option selected value="0">Select a category</option>
                   <ng-container  *ngFor="let c of categories"><option class="" *ngIf="c.name !='Home'" value="{{c.name}}">{{c.name}}</option></ng-container>
                 </select>
+                <small *ngIf="category.invalid && (category.dirty || category.touched)" class="form-text text-danger">
+                  Please select a category for your content.
+                </small>
               </div>
             </div>
             <fieldset class="form-group">
               <div class="row">
-                <legend class="col-form-legend col-sm-3">Show in searched</legend>
+                <legend class="col-form-legend col-sm-3">Show in searches</legend>
                 <div class="col-sm-9">
                   <div class="form-check">
                     <label class="form-check-label">
@@ -68,19 +81,19 @@
             <div class="form-group row">
               <label for="inputFile" class="col-sm-3 col-form-label">Content upload</label>
               <div class="col-sm-9 align-self-center">
-                <!-- <label class="custom-file">
-                  <input (change)="fileChange($event)" type="file" id="inputFile" class="custom-file-input">
-                  <span class="custom-file-control"></span>
-                </label> -->
-
-                <input (change)="fileChange($event)" type="file" class="form-control-file" id="exampleFormControlFile1">
-
-
+                <input required (change)="fileChange($event)" type="file" [(ngModel)]="newContent.unFile" name="unFile" #unFile="ngModel"  class="form-control-file" id="exampleFormControlFile1"
+                accept=".jpg, .png, .gif, .pdf, .mp3, .doc, .docx">
+                <small *ngIf="unFile.invalid && (unFile.dirty || unFile.touched)" class="form-text text-danger">
+                  Please select a file to upload.
+                </small>
+                <small *ngIf="fileError.length>0" class="form-text text-danger">
+                  {{fileError}}
+                </small>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-12 mt-3">
-                <button type="submit" class="btn btn-block btn-success">Submit content</button>
+                <button [disabled]="!contentForm.valid || !file" type="submit" class="btn btn-block btn-success">Submit content</button>
               </div>
             </div>
             <div class="form-group row">

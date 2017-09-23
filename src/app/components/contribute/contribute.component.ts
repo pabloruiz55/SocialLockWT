@@ -3,6 +3,7 @@ import {FirebaseService} from '../../services/firebase.service'
 import {Content} from '../../models/content.model'
 import { RequestOptions } from '@angular/http';
 import * as firebase from 'firebase/app';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-contribute',
@@ -13,12 +14,13 @@ export class ContributeComponent implements OnInit {
 
   categories:any[];
   newContent:Content;
-  theFile:any;
   file: File;
+  iconImg: File;
 
   localFileURL:string;
+  fileError:string = "";
 
-  constructor(public _db:FirebaseService) { }
+  constructor(public _db:FirebaseService, private _router:Router) { }
 
   ngOnInit() {
     this.newContent = new Content();
@@ -40,16 +42,29 @@ export class ContributeComponent implements OnInit {
   }
 
   fileChange(event) {
+    this.fileError = "";
+    this.file = null;
     let fileList: FileList = event.target.files;
     if(fileList.length > 0) {
+      if(fileList[0].size < 5*1024*1024){ //5 megas
         this.file = fileList[0];
-
+        console.log(this.file);
+      }else{
+        event.target.value = "";
+        this.fileError = "Please select a file up to 5mb."
+      }
     }
-}
+  }
+
+  iconFileChange(event) {
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+        this.iconImg = fileList[0];
+    }
+  }
 
   onSubmit(contentForm:any){
     this.localFileURL = this.file.name;
-
     let storageRef = firebase.storage().ref();
     let uploadTask:firebase.storage.UploadTask =
     storageRef.child("content/"+this.file.name).put(this.file);
@@ -61,12 +76,11 @@ export class ContributeComponent implements OnInit {
         console.log(uploadTask.snapshot.downloadURL);
         this.newContent.fileURL=uploadTask.snapshot.downloadURL;
         this._db.addNewContent(this.newContent).then((data)=>{
-          console.log("content saved");
+          console.log("content saved",data.key);
+          this._router.navigate(['/content',data.key]);
         });
       }
     )
-    console.log(this.file);
-    console.log(contentForm);
     // this._db.addNewContent(this.newContent).then((data)=>{
     //   console.log("content saved");
     // });

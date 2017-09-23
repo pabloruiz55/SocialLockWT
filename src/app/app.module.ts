@@ -10,6 +10,7 @@ import {TruffleEthereumService} from './services/truffle-ethereum.service';
 import {FirebaseService} from './services/firebase.service';
 import {CategoriesService} from './services/categories.service';
 import { ModalService } from './components/fslogin-modal/fslogin-modal.component';
+import {AuthguardService} from './services/authguard.service'
 
 
 //Firebase config
@@ -53,7 +54,8 @@ import { ContributeComponent } from './components/contribute/contribute.componen
   providers: [/*TruffleEthereumService,*/
     FirebaseService,
     CategoriesService,
-    ModalService],
+    ModalService,
+    AuthguardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

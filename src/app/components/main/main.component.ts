@@ -18,5 +18,4 @@ export class MainComponent implements OnInit {
   openModal(){
     this._modal.open();
   }
-
 }
